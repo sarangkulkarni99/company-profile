@@ -3,12 +3,13 @@ import { sequelize } from "../../common/utils/sequelizeConfig";
 import customerRepo from "../DBService/customer.repo";
 import { customerResponse } from "../../common/constants/customer.response";
 import { CUSTOMER_CONSTANTS } from "../../common/constants/customer.constants";
+import { ICustomer, IFilter, IWhereClause, Order } from "../../common/types/customer.types";
 
 const { NOT_FOUND, CREATED } = customerResponse;
 
 const { city, company } = CUSTOMER_CONSTANTS;
 
-const createCustomer = async (data: any) => {
+const createCustomer = async (data: ICustomer) => {
   try {
     const result = await customerRepo.create({
       ...data,
@@ -30,10 +31,10 @@ const getOneCustomer = async (id: number) => {
   }
 };
 
-const getAllCustomers = async (query: any) => {
+const getAllCustomers = async (query: IFilter) => {
   try {
-    let where: any = {};
-    let order: any[] = [];
+    let where: IWhereClause = {};
+    let order: Order[] = [];
     const {
       sortBy = ["ASC", "firstName"],
       search,

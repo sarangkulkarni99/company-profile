@@ -1,10 +1,11 @@
+import { ICustomer, IWhereClause, Order } from "../../common/types/customer.types";
 import { customerModel } from "../../models/customer.schema";
 
-const create = (data: any) => customerModel.create({ ...data });
+const create = (data: ICustomer) => customerModel.create({ ...data });
 
 const getAll = async (
-  where: any,
-  order: any[],
+  where: IWhereClause,
+  order: Order[],
   limit: number,
   offset: number
 ) => {

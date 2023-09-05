@@ -26,7 +26,7 @@ customerRouter.post(
   }
 );
 
-customerRouter.get(PRIVATE_CUSTOMER_GET_ALL, async (req, res, next) => {
+customerRouter.post(PRIVATE_CUSTOMER_GET_ALL, async (req, res, next) => {
   try {
     const response = await customerService.getAllCustomers(req.body);
     res.send(new ResponseHandler(response));
